@@ -8,6 +8,7 @@ import { HomeComponent } from './component/pages/home/home.component';
 import { LoginComponent } from './component/pages/login/login.component';
 import { AuthService } from './services/auth.service';
 import { SecureComponent } from './component/pages/secure/secure.component';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { SecureComponent } from './component/pages/secure/secure.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
