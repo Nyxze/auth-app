@@ -21,6 +21,8 @@ ngOnInit(): void {
 
 ajouterTodo() {
     // Ajoute à la liste de ton component
+    this.todoList = this.todoService.getData();
+    this.todoService.getData();
     this.todoList.push(this.todo);
 
     // Ajoute dans le service (la bdd)
@@ -28,7 +30,9 @@ ajouterTodo() {
 
     // Reset Todo component
     this.todo = '';
+    
 }
+
 }
 
 

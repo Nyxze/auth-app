@@ -5,11 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class TodoService {
   todo: string='';
-  todoList: string[] = [];
+  todoList: string[] = ['Rene','Lataupe '];
  
   addTodo(){
+    console.log('add todo')
     this.todo = ''
   }
+
+ 
   getData(){
     return this.todoList;
   }

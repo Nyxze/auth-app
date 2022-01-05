@@ -1,4 +1,3 @@
-<ul>
-    <li *ngFor="let todo of todo.todoList">{{ todo }}</li>
-
+<ul class="list-group"> 
+    <li class="list-group-item" *ngFor="let todo of todo.todoList; let i =index">{{ todo }} <button (click)="deleteTodo(i)">Delete</button></li> 
     </ul>
