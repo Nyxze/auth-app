@@ -12,6 +12,8 @@
       <p class="navbar-text- me-2">{{security.user.greet()}}</p>
 
       <nav class="mb-4 d-flex justify-content-end">
+        <button class="btn btn-primary" routerLink="/todo">
+          Todo List </button>
         <button class="btn btn-primary" routerLink="/secure">
           Page securisée </button>
         <button *ngIf="!security.user.isAuthenticated; else deconnexion" class="btn btn-primary" routerLink="/login">

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo, TodoInterface } from 'src/app/models/todo.model';
 import { TodoService } from 'src/app/services/todo.service';
 
 
@@ -9,9 +8,9 @@ import { TodoService } from 'src/app/services/todo.service';
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
-todo : TodoInterface = { todoName: '', todoState:false };
+todo : string = ''
 
-todoList: TodoInterface[] = [];
+todoList: string[] = [];
 
 constructor (public todoService: TodoService){}
 
@@ -28,7 +27,7 @@ ajouterTodo() {
     this.todoService.addTodo();
 
     // Reset Todo component
-    this.todo.todoName = '';
+    this.todo = '';
 }
 }
 

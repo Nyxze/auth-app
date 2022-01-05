@@ -1,12 +1,10 @@
 <div class="mb-3 row">
     <div class="col">
-        <input type="text" placeholder="Task" class="form-control" [(ngModel)]="todo.todoName" >
+        <input type="text" placeholder="Task" class="form-control" [(ngModel)]="todo" >
     </div>
 
     <div class="col-3">
         <button (click)="ajouterTodo()">Add</button>
     </div>
 </div>
-
-
 <app-todo-list></app-todo-list>
