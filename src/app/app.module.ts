@@ -9,13 +9,17 @@ import { LoginComponent } from './component/pages/login/login.component';
 import { AuthService } from './services/auth.service';
 import { SecureComponent } from './component/pages/secure/secure.component';
 import { NotificationService } from './services/notification.service';
+import { TodoListComponent } from './component/todo-list/todo-list.component';
+import { TodoFormComponent } from './component/todo-form/todo-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SecureComponent
+    SecureComponent,
+    TodoListComponent,
+    TodoFormComponent
   ],
   imports: [
     BrowserModule,
