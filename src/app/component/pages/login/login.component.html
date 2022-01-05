@@ -1,0 +1,21 @@
+<div class="p-2">
+    <h2 class="mb-2">Authentification</h2>
+    <div class="alert alert-danger mt-2 mb-2 p-2"
+    *ngIf="isSubmitted && !isAuthenticated">
+    Infos incorrectes
+    </div>
+    <div class="mb-2">
+        <label class="form-label">Identifiant</label>
+        <input class="form-control" type="text"
+        [(ngModel)]="userInput.login">
+    </div>
+    <div class="mb-2">
+        <label class="form-label">Mot de passe</label>
+        <input class="form-control" type="password"
+        [(ngModel)]="userInput.password" >
+    </div>
+
+    <button class="btn btn-primary" (click)="validateForm()">
+        Valider
+    </button>
+</div>
