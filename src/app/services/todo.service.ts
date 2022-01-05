@@ -17,9 +17,10 @@ export class TodoService {
   }
 
   addTodo(){
-    this.todo
+
     this.todoList.push()
     this.todo.todoState = true;
+    this.todo.todoName = ''
   }
   getData(){
     return this.todoList;

@@ -12,6 +12,7 @@ export class TodoListComponent implements OnInit {
   constructor(public todo: TodoService) { }
 
   ngOnInit(): void {
+
   }
 
 }
