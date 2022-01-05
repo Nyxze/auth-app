@@ -1,1 +1,12 @@
-<p>todo-form works!</p>
+<div class="mb-3 row">
+    <div class="col">
+        <input type="text" placeholder="Task" class="form-control" [(ngModel)]="todo.todo.todoName" >
+    </div>
+
+    <div class="col-3">
+        <button (click)="todo.addTodo()">Add</button>
+    </div>
+</div>
+
+
+<app-todo-list></app-todo-list>

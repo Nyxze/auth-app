@@ -11,6 +11,7 @@ import { SecureComponent } from './component/pages/secure/secure.component';
 import { NotificationService } from './services/notification.service';
 import { TodoListComponent } from './component/todo-list/todo-list.component';
 import { TodoFormComponent } from './component/todo-form/todo-form.component';
+import { TodoService } from './services/todo.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { TodoFormComponent } from './component/todo-form/todo-form.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [AuthService, NotificationService],
+  providers: [AuthService, NotificationService, TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
