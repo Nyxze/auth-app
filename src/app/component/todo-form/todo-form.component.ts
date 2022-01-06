@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Todo } from 'src/app/models/todo.model';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -10,16 +10,29 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class TodoFormComponent implements OnInit {
   todo: Todo;
-  constructor(private todoService: TodoService, private router: Router) {
+
+  constructor(private todoService: TodoService, private router: Router, private currentRoute: ActivatedRoute) {
     this.todo = this.todoService.getNewTodo();
+    currentRoute.params.subscribe(params=> {
+      const id = params['id']
+      this.todo = this.todoService.getOneById(id)
+     
+
+    })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  
+  }
 
   validateForm() {
-    this.todoService.addTask(this.todo);
-    this.router.navigate(['/todo-list']);
-  }
+    
+      this.todoService.saveTask(this.todo);
+      this.router.navigate(['/todo-list']);
+    
+}
+
+
 }
 
 // export class TodoFormComponent implements OnInit {

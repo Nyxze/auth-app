@@ -6,6 +6,7 @@ Ajouter une tache
     <th>Status</th>
     <th>Task</th>
     <th></th>
+    <th></th>
   </thead>
   <tbody>
     <tr *ngFor="let task of todoService.todoList; let i = index">
@@ -20,6 +21,9 @@ Ajouter une tache
     </td>
     <td>
         <button (click)="todoService.deleteTask(i)" class="btn btn-danger btn-sm">X</button>
-    </td></tr>
+        <button class="btn btn-danger btn-sm mx-1" routerLink="/todo-form/{{task.id}}">Update</button>
+    </td>
+    
+</tr>
   </tbody>
 </table>
