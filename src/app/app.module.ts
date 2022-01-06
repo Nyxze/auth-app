@@ -13,6 +13,7 @@ import { TodoListComponent } from './component/todo-list/todo-list.component';
 import { TodoFormComponent } from './component/todo-form/todo-form.component';
 import { TodoService } from './services/todo.service';
 import { SelectComponent } from './component/select/select.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SelectComponent } from './component/select/select.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxWebstorageModule.forRoot(),
   ],
   providers: [AuthService, NotificationService, TodoService],
   bootstrap: [AppComponent]
