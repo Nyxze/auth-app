@@ -1,6 +1,7 @@
 <button class="btn btn-primary mt-3 mb-2" routerLink="/todo-form">
 Ajouter une tache
 </button>
+<app-select label="Recherche" [(user)]="todoService.search"></app-select>
 <table class="table table-stripped">
   <thead>
     <th>Status</th>

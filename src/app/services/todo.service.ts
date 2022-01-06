@@ -10,6 +10,8 @@ export class TodoService {
     new Todo({ taskName:'Traire les vaches', taskStatus:true, id: 1, user:'Rene'}),
     new Todo({ taskName:'Conduire le bus', taskStatus:true, id: 2,user:'Bernard' }),
   ];
+
+  search:string='';
  
   constructor(){}
 
