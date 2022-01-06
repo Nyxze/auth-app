@@ -1,3 +1,25 @@
-<ul class="list-group"> 
-    <li class="list-group-item" *ngFor="let todo of todo.todoList; let i =index">{{ todo }} <button (click)="deleteTodo(i)">Delete</button></li> 
-    </ul>
+<button class="btn btn-primary mt-3 mb-2" routerLink="/todo-form">
+Ajouter une tache
+</button>
+<table class="table table-stripped">
+  <thead>
+    <th>Status</th>
+    <th>Task</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of todoService.todoList; let i = index">
+    <td>
+      <input type="checkbox" [checked]="task.taskStatus" />
+    </td>
+    <td>
+    {{
+            task.taskName
+        
+    }}
+    </td>
+    <td>
+        <button (click)="todoService.deleteTask(i)" class="btn btn-danger btn-sm">X</button>
+    </td></tr>
+  </tbody>
+</table>

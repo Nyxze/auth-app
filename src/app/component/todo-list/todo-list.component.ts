@@ -8,11 +8,8 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class TodoListComponent implements OnInit {
 
-  constructor(public todo: TodoService) { }
+  constructor(public todoService: TodoService) { }
 
-  deleteTodo(id:number){
-    this.todo.todoList=this.todo.todoList.filter((v,i)=> i !== id)
-    }
     
   ngOnInit(): void {
 

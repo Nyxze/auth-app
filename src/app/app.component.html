@@ -1,27 +1,37 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-md-8 p-4">
-
-
       <!-- Notifications-->
-      <div *ngIf="notif.hasMessage()"  class="alert alert-secondary">
-        {{notif.getMessage().text}}
+      <div *ngIf="notif.hasMessage()" class="alert alert-secondary">
+        {{ notif.getMessage().text }}
       </div>
-      
+
       <!-- Navigation-->
-      <p class="navbar-text- me-2">{{security.user.greet()}}</p>
+      <p class="navbar-text- me-2">{{ security.user.greet() }}</p>
 
       <nav class="mb-4 d-flex justify-content-end">
-        <button class="btn btn-primary" routerLink="/todo">
-          Todo List </button>
+        <button class="btn btn-primary" routerLink="/todo-list">
+          Todo List
+        </button>
         <button class="btn btn-primary" routerLink="/secure">
-          Page securisée </button>
-        <button *ngIf="!security.user.isAuthenticated; else deconnexion" class="btn btn-primary" routerLink="/login">
-          Connexion</button>
-          <ng-template #deconnexion>
-            <button class="btn btn-primary" (click)="security.logout()" routerLink="/home">Deconnexion</button>
-          </ng-template>
-        
+          Page securisée
+        </button>
+        <button
+          *ngIf="!security.user.isAuthenticated; else deconnexion"
+          class="btn btn-primary"
+          routerLink="/login"
+        >
+          Connexion
+        </button>
+        <ng-template #deconnexion>
+          <button
+            class="btn btn-primary"
+            (click)="security.logout()"
+            routerLink="/home"
+          >
+            Deconnexion
+          </button>
+        </ng-template>
       </nav>
       <router-outlet></router-outlet>
     </div>
