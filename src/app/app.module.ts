@@ -12,6 +12,7 @@ import { NotificationService } from './services/notification.service';
 import { TodoListComponent } from './component/todo-list/todo-list.component';
 import { TodoFormComponent } from './component/todo-form/todo-form.component';
 import { TodoService } from './services/todo.service';
+import { SelectComponent } from './component/select/select.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TodoService } from './services/todo.service';
     LoginComponent,
     SecureComponent,
     TodoListComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,

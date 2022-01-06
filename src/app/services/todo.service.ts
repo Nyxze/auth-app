@@ -10,10 +10,13 @@ export class TodoService {
     new Todo({ taskName:'Traire les vaches', taskStatus:true, id: 1, user:'Rene'}),
     new Todo({ taskName:'Conduire le bus', taskStatus:true, id: 2,user:'Bernard' }),
   ];
+  filteredTodoList: Todo[]= [];
 
   search:string='';
  
-  constructor(){}
+  constructor(){
+    this.filterTask();
+  }
 
   getNewTodo():Todo{
     return new Todo();
@@ -33,6 +36,15 @@ export class TodoService {
 
     const task = this.todoList.find(item=> item.id == id)
     return task || new Todo()
+
+  }
+
+  filterTask(){
+    if(this.search){
+      this.filteredTodoList = this.todoList.filter(item=> item.user == this.search)
+    }else{
+      this.filteredTodoList = this.todoList
+    }
 
   }
 }

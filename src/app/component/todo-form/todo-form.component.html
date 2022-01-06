@@ -4,16 +4,8 @@
         <input type="text" class="form-control"
         [(ngModel)]="todo.taskName" >
 
-    </div>
-    <div class="mb-2 col-3">
-        <label class="form-label" >Responsable</label>
-        <select class="form-select"
-        [(ngModel)]="todo.user" >
-        <option *ngFor="let user of security.userList" [value]="user.userName" >
-            {{user.userName}}
-        </option>
-        </select>
-    </div>
+    </div> 
+    <app-select [(user)]="todo.user"></app-select>
     <div class="mb-2 form-check">
         <label class="form-check-label" >Status</label>
         <input type="checkbox" class="form-check-input"

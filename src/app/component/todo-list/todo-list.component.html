@@ -1,7 +1,8 @@
 <button class="btn btn-primary mt-3 mb-2" routerLink="/todo-form">
 Ajouter une tache
 </button>
-<app-select label="Recherche" [(user)]="todoService.search"></app-select>
+<app-select label="Recherche" [(user)]="todoService.search"
+firstOptionLabel="Select Label" (change)="todoService.filterTask()" ></app-select>
 <table class="table table-stripped">
   <thead>
     <th>Status</th>
@@ -11,7 +12,7 @@ Ajouter une tache
     <th></th>
   </thead>
   <tbody>
-    <tr *ngFor="let task of todoService.todoList; let i = index">
+    <tr *ngFor="let task of todoService.filteredTodoList; let i = index">
     <td>
       <input type="checkbox" [checked]="task.taskStatus" />
     </td>

@@ -12,7 +12,7 @@ import { TodoService } from 'src/app/services/todo.service';
 export class TodoFormComponent implements OnInit {
   todo: Todo;
 
-  constructor(private todoService: TodoService, private router: Router, private currentRoute: ActivatedRoute, public security:AuthService) {
+  constructor(public todoService: TodoService, private router: Router, private currentRoute: ActivatedRoute, public security:AuthService) {
     this.todo = this.todoService.getNewTodo();
     currentRoute.params.subscribe(params=> {
       const id = params['id']
