@@ -6,7 +6,7 @@ import { SecureComponent } from './component/pages/secure/secure.component';
 import { TodoFormComponent } from './component/todo-form/todo-form.component';
 import { TodoListComponent } from './component/todo-list/todo-list.component';
 import { AuthGuard} from './guards/auth.guard';
-import { RandomUserComponent } from './pages/random-user/random-user.component';
+import { RandomUserComponent } from './component/pages/random-user/random-user.component';
 
 const routes: Routes = [
 {path:'home', component: HomeComponent},

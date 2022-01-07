@@ -14,7 +14,7 @@ import { TodoService } from './services/todo.service';
 import { SelectComponent } from './component/select/select.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { HttpClientModule} from '@angular/common/http';
-import { RandomUserComponent } from './pages/random-user/random-user.component';
+import { RandomUserComponent } from './component/pages/random-user/random-user.component';
 
 @NgModule({
   declarations: [
