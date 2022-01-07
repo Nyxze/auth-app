@@ -3,35 +3,28 @@ import { Todo } from '../models/todo.model';
 import { LocalStorageService } from 'ngx-webstorage';
 import { AuthService } from './auth.service';
 import { NotificationService } from './notification.service';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map, tap } from 'rxjs/operators';
 
-const TODO_KEY = 'todos';
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  todoList: Todo[] = [
-    new Todo({
-      taskName: 'Traire les vaches',
-      taskStatus: true,
-      id: 1,
-      user: 'Rene',
-    }),
-    new Todo({
-      taskName: 'Conduire le bus',
-      taskStatus: true,
-      id: 2,
-      user: 'Bernard',
-    }),
-  ];
+  readonly url = 'http://localhost:3000/tasks';
+
+  todoList: Observable<Todo[]> = new Observable<Todo[]>();
+
   filteredTodoList: Todo[] = [];
 
   search: string = '';
 
-  constructor(private storage: LocalStorageService,
-               private security:AuthService,
-               private notif:NotificationService) {
-    this.loadFromStorage();
-    this.filterTask();
+  constructor(
+    private security: AuthService,
+    private notif: NotificationService,
+    private http: HttpClient
+  ) {
+    this.loadFromApi(this.url);
   }
 
   getNewTodo(): Todo {
@@ -39,52 +32,54 @@ export class TodoService {
   }
 
   saveTask(data: Todo): void {
-    const idExist = this.todoList.find((item) => item.id == data?.id);
-    if (!idExist) {
-      this.todoList.push(data);
+    if (!data.id) {
+      this.http.post<Todo>(this.url, data).subscribe((data) => {
+        console.log('Insert', data);
+        this.loadFromApi(this.url);
+      });
+    } else {
+      this.http.put(this.url + '/' + data.id, data).subscribe((data) => {
+        console.log('Modify', data);
+        this.loadFromApi(this.url);
+      });
     }
-
-    this.persist();
   }
 
   deleteTask(id: number | undefined): void {
-    const index = this.todoList.findIndex((item) => item.id == id);
-
-    if(index>=0){
-      const todo = this.todoList[index];
-      if(todo.user = this.security.user.login){
-        this.todoList.splice(index, 1);
-        this.persist();
-      }else{
-        this.notif.setMessage("Vous n'avez pas les droits pour delete")
+    const url = this.url + '/' + id;
+    if (id == undefined) {
+      return;
     }
-    }
-    
+    this.getOneById(id).subscribe((task) => {
+      if (task.user == this.security.user.login) {
+        this.http.delete(url).subscribe(() => this.loadFromApi(this.url));
+      }
+    });
   }
-  getOneById(id: number): Todo {
-    const task = this.todoList.find((item) => item.id == id);
-    return task || new Todo();
+  getOneById(id: number): Observable<Todo> {
+    return this.http.get<Todo>(this.url + '/' + id);
   }
 
   filterTask() {
+    let url = this.url;
     if (this.search) {
-      this.filteredTodoList = this.todoList.filter(
-        (item) => item.user == this.search
-      );
-    } else {
-      this.filteredTodoList = this.todoList;
+      url += '?user=' + this.search;
     }
+    this.loadFromApi(url);
   }
 
-  loadFromStorage(): void {
-    const rawData = this.storage.retrieve(TODO_KEY);
-    if (rawData) {
-      const data = JSON.parse(rawData);
-      this.todoList = data;
-    }
+  loadFromApi(url: string): void {
+    this.todoList = this.http.get(url).pipe(
+      map((res: any) => this.todoMap(res)),
+      tap((resp: any) => console.log(resp))
+    );
+    console.log(this.todoList);
   }
 
-  persist(): void {
-    this.storage.store(TODO_KEY, JSON.stringify(this.todoList));
+  todoMap(resp: any): Todo[] {
+    return resp.map((item: any) => {
+      console.log('cc');
+      return new Todo(item);
+    });
   }
 }

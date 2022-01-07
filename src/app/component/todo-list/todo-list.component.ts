@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Todo } from 'src/app/models/todo.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { RandomUserService } from 'src/app/services/random-user.service';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class TodoListComponent implements OnInit {
   constructor(public todoService: TodoService,
     private security: AuthService,
     private router: Router,
-    private notif: NotificationService) { }
+    private notif: NotificationService,) { }
 
     
   ngOnInit(): void {

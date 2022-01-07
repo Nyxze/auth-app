@@ -20,23 +20,26 @@ export class TodoFormComponent implements OnInit, AfterViewInit {
     private currentRoute: ActivatedRoute,
     public security: AuthService
   ) {
-    this.todo = this.todoService.getNewTodo();
-    currentRoute.params.subscribe((params) => {
-      const id = params['id'];
-      this.todo = this.todoService.getOneById(id);
-    });
+  this.todo = this.todoService.getNewTodo()
   }
   ngAfterViewInit(): void {
-    setTimeout(()=>{
-      this.taskForm?.setValue(
-        {taskName:this.todo.taskName,
-          taskStatus:this.todo.taskStatus
-          }
-          );
-    }, 100)
-    
-  }
 
+    this.currentRoute.params.subscribe((params) => {
+      const id = params['id'];
+      this.todoService.getOneById(id).subscribe(
+        (task)=>
+        setTimeout(()=>{
+          this.taskForm?.setValue(
+            {taskName:this.todo.taskName,
+              taskStatus:this.todo.taskStatus
+              }
+              );
+        }, 100)
+      )
+
+    
+  })
+  }
   ngOnInit(): void {
   }
 

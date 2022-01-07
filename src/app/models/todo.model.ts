@@ -16,8 +16,6 @@ export class Todo  {
         this.taskStatus=data.taskStatus;
         this.id = data.id || new Date().getTime();
         this.user = data.user;
-      }else{
-        this.id = new Date().getTime();
       }
       
     }

@@ -12,7 +12,7 @@ firstOptionLabel="Select Label" (change)="todoService.filterTask()" ></app-selec
     <th></th>
   </thead>
   <tbody>
-    <tr *ngFor="let task of todoService.filteredTodoList; let i = index">
+    <tr *ngFor="let task of todoService.todoList|async; let i = index">
     <td>
       <input type="checkbox" [checked]="task.taskStatus" />
     </td>
