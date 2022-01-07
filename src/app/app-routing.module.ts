@@ -6,6 +6,7 @@ import { SecureComponent } from './component/pages/secure/secure.component';
 import { TodoFormComponent } from './component/todo-form/todo-form.component';
 import { TodoListComponent } from './component/todo-list/todo-list.component';
 import { AuthGuard} from './guards/auth.guard';
+import { RandomUserComponent } from './pages/random-user/random-user.component';
 
 const routes: Routes = [
 {path:'home', component: HomeComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
 {path:'todo-form', component: TodoFormComponent,canActivate:[AuthGuard]},
 {path:'todo-form/:id', component: TodoFormComponent,canActivate:[AuthGuard]},
 {path:'todo-list', component: TodoListComponent},
+{path:'user-list', component: RandomUserComponent},
 {path:'secure', component: SecureComponent, canActivate:[AuthGuard]},
 {path:'', redirectTo:'/home', pathMatch:'full'}
 ];
