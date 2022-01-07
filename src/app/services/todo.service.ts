@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../models/todo.model';
 import { LocalStorageService } from 'ngx-webstorage';
+import { AuthService } from './auth.service';
+import { NotificationService } from './notification.service';
 
 const TODO_KEY = 'todos';
 @Injectable({
@@ -25,7 +27,9 @@ export class TodoService {
 
   search: string = '';
 
-  constructor(private storage: LocalStorageService) {
+  constructor(private storage: LocalStorageService,
+               private security:AuthService,
+               private notif:NotificationService) {
     this.loadFromStorage();
     this.filterTask();
   }
@@ -45,8 +49,17 @@ export class TodoService {
 
   deleteTask(id: number | undefined): void {
     const index = this.todoList.findIndex((item) => item.id == id);
-    this.todoList.splice(index, 1);
-    this.persist();
+
+    if(index>=0){
+      const todo = this.todoList[index];
+      if(todo.user = this.security.user.login){
+        this.todoList.splice(index, 1);
+        this.persist();
+      }else{
+        this.notif.setMessage("Vous n'avez pas les droits pour delete")
+    }
+    }
+    
   }
   getOneById(id: number): Todo {
     const task = this.todoList.find((item) => item.id == id);

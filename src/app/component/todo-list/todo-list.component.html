@@ -29,8 +29,8 @@ firstOptionLabel="Select Label" (change)="todoService.filterTask()" ></app-selec
     }}
     </td>
     <td>
-        <button (click)="todoService.deleteTask(i)" class="btn btn-danger btn-sm">X</button>
-        <button class="btn btn-danger btn-sm mx-1" routerLink="/todo-form/{{task.id}}">Update</button>
+        <button (click)="todoService.deleteTask(task.id)" class="btn btn-danger btn-sm">X</button>
+        <button class="btn btn-danger btn-sm mx-1" (click)="taskEdit(task)">Update</button>
     </td>
     
 </tr>

@@ -9,5 +9,6 @@ import { NotificationService } from './services/notification.service';
 })
 export class AppComponent {
   title = 'auth-app';
-  constructor (public security: AuthService, public notif:NotificationService){}
+  constructor (public security: AuthService,
+                 public notif:NotificationService){}
 }
